@@ -1,0 +1,57 @@
+/*
+Cloud Color:rgb(51,169,255)
+*/
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    
+}
+.Container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top:5rem ;
+    background-image: linear-gradient(rgb(51,169,255),#fff);
+    background-repeat: no-repeat;
+}
+.body-Container{
+    width: 27rem;
+    height:35rem;
+    background-color: white;
+}
+.Heading{
+    position: relative;
+    top:5rem;
+}
+.Logo-img{
+    position: relative;
+    top:8rem;
+}
+.SearchLocation-Container{
+    position: relative;
+    top: 8rem;
+}
+.Input-field{
+    outline: none;
+    width: 200px;
+    height:25px;
+    border: 1px solid black;
+    border-radius: 5px 0 0 5px;
+}
+.SearchLocation-btn{
+    width:110px;
+    height: 25px;
+    border: 1px solid black;
+    border-radius: 0 5px 5px 0;
+    background-color: #6ab9f1;
+}
+.CurrentLocation-Container{
+    position: relative;
+    top: 12rem;
+}
+.CurrentLocation-btn{
+    width:150px;
+    height:30px;
+    background-color: #6ab9f1;
+}
