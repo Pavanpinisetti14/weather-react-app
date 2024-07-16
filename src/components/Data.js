@@ -52,7 +52,7 @@ const Data = (props) => {
                             </div>
                             <div className="sun-data data">
                                 <span>
-                                    {sunLabel} <br></br>none
+                                    {sunLabel} <br></br>
                                 </span>
                             </div>
                             <div className="weather-data data">

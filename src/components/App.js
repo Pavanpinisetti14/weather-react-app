@@ -6,7 +6,13 @@ function App(){
     const navigate=useNavigate();
     const[city,setCity]=useState("");
     const EnterData=()=>{
-        navigate('/SearchLocation',{state:{Loc:city}})
+        if(city != ""){
+            navigate('/SearchLocation',{state:{Loc:city}})
+        }
+        else{
+            alert("Enter City Name")
+        }
+        
     }
     return(
         <div className="Container">
@@ -20,7 +26,7 @@ function App(){
                 <div className="SearchLocation-Container">
                     <div>
                         <div>
-                            <input type="text" placeholder="Ex:Delhi" className="Input-field" value={city} onChange={(e)=>setCity(e.target.value)}required/>
+                            <input type="text" placeholder="Ex:Delhi" className="Input-field" value={city} onChange={(e)=>setCity(e.target.value)} required/>
                            <button className="SearchLocation-btn" onClick={()=>EnterData()}>SearchLocation</button>
                         </div>
                     </div>
