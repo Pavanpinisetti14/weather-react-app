@@ -1,23 +1,25 @@
 import "../styles/Data.css";
+
 const Data = (props) => {
   const { city } = props;
-//   console.log("city ", city.name);
-    
-    //finding The Time 
-    
-        const moment = require('moment-timezone');
+  console.log("city ", city);
+//   const { name, main, sys, weather, timezone } = city;
 
-        const timezoneOffsetSeconds = 3600; // Example timezone offset in seconds (1 hour)
-        
-        // Get the timezone name corresponding to the offset
-        const timezoneName = moment.tz.names().find(name => moment.tz.zone(name).offsets[0] === timezoneOffsetSeconds);
-        
-        console.log("Corresponding timezone name:", timezoneName);
-    
+//   // Calculate local time
+//   const unixTimestamp = city.dt;
+//   const timezoneOffsetSeconds = timezone;
 
-    const currentTime = new Date().getTime() / 1000;
-    const isSunrise = currentTime < new Date(city.sys.sunrise * 1000).toLocaleTimeString('en-IN');
-    const sunLabel = isSunrise ? "Sunrise" : "Sunset";
+//   const unixMilliseconds = unixTimestamp * 1000;
+//   const dateObject = new Date(unixMilliseconds);
+
+// // Get hours, minutes, and seconds from the Date object
+// const hours = dateObject.getHours().toString().padStart(2, '0');
+// const minutes = dateObject.getMinutes().toString().padStart(2, '0');
+// // const seconds = dateObject.getSeconds().toString().padStart(2, '0');
+
+// // Concatenate hours, minutes, and seconds to form the time string
+// const formattedTime = `${hours}:${minutes}`;
+// console.log("Formatted Time:", formattedTime);
     return (
         <div>
             <center>
@@ -52,7 +54,7 @@ const Data = (props) => {
                             </div>
                             <div className="sun-data data">
                                 <span>
-                                    {sunLabel} <br></br>
+                                    Wind Speed <br></br>{city.wind.speed}
                                 </span>
                             </div>
                             <div className="weather-data data">
