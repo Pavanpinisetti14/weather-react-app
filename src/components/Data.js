@@ -3,23 +3,6 @@ import "../styles/Data.css";
 const Data = (props) => {
   const { city } = props;
   console.log("city ", city);
-//   const { name, main, sys, weather, timezone } = city;
-
-//   // Calculate local time
-//   const unixTimestamp = city.dt;
-//   const timezoneOffsetSeconds = timezone;
-
-//   const unixMilliseconds = unixTimestamp * 1000;
-//   const dateObject = new Date(unixMilliseconds);
-
-// // Get hours, minutes, and seconds from the Date object
-// const hours = dateObject.getHours().toString().padStart(2, '0');
-// const minutes = dateObject.getMinutes().toString().padStart(2, '0');
-// // const seconds = dateObject.getSeconds().toString().padStart(2, '0');
-
-// // Concatenate hours, minutes, and seconds to form the time string
-// const formattedTime = `${hours}:${minutes}`;
-// console.log("Formatted Time:", formattedTime);
     return (
         <div>
             <center>
