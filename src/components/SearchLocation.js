@@ -33,7 +33,7 @@ function SearchLocation() {
                 setShow(true);
             }
         } catch (error) {
-            console.log("Error Fetching Weather Data ", error);
+            console.log("Loging..... ", error);
         }
     };
 
