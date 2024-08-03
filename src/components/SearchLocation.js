@@ -54,7 +54,7 @@ function SearchLocation() {
                 <Data city={weatherData} />
             ) : (
                 <div>
-                    <p>There was an error fetching weather data.</p>
+                    <p>Loading....</p>
                     {/* You can customize this alert message as needed */}
                 </div>
             )}
