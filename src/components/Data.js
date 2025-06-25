@@ -2,7 +2,7 @@ import "../styles/Data.css";
 
 const Data = (props) => {
   const { city } = props;
-  console.log("city ", city);
+//   console.log("city ", city);
     return (
         <div>
             <center>
@@ -48,7 +48,7 @@ const Data = (props) => {
                             </div>
                         </div>
                         <div className="viewmore-btn">
-                            <button id="viewmore-btn">View More</button>
+                            {/* <button id="viewmore-btn">View More</button> */}
                         </div>
                         </div>
                     </div>

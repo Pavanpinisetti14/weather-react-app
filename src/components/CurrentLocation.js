@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Data from "./Data";
-
+import "../styles/Data.css"
 const API_KEY = "d078f5db93b9e170f3369d14f45bc62a";
 const API_URL = "https://api.openweathermap.org/data/2.5/weather";
 
@@ -8,18 +8,14 @@ function CurrentLocation() {
   const [loccity, setLoccity] = useState('');
   const [error, setError] = useState(null);
   const [error1, setError1] = useState(null);
-  const [show, setShow] = useState(true);
   const [weatherData, setWeatherData] = useState(null);
 
   const getCityName = async (latitude, longitude) => {
     try {
-      const response = await fetch(`https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=6c7242f5d9ec4ed5ab772a4cfebbeecc`);
-      if (!response.ok) {
-        throw new Error('Error fetching city name');
-      }
+      const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`);
+      if (!response.ok) throw new Error('Error fetching city name');
       const data = await response.json();
-      console.log("OpenCage API response:", data);
-      const city = data.results[0]?.components.city || data.results[0]?.components.town || data.results[0]?.components.village;
+      const city = data.address.city || data.address.town || data.address.village;
       setLoccity(city);
     } catch (error) {
       setError('Error fetching city name. Please try again later.');
@@ -28,12 +24,13 @@ function CurrentLocation() {
 
   const getCurrentLocation = () => {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        const { latitude, longitude } = position.coords;
-        getCityName(latitude, longitude);
-      }, (error) => {
-        setError('Please ensure location services are enabled.');
-      });
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          getCityName(latitude, longitude);
+        },
+        () => setError('Please ensure location services are enabled.')
+      );
     } else {
       setError('Geolocation is not supported by this browser.');
     }
@@ -41,20 +38,17 @@ function CurrentLocation() {
 
   const FetchWeather = async () => {
     try {
-      if (loccity) { // Ensure loccity (area) is not empty
+      if (loccity) {
         const response = await fetch(
           `${API_URL}?q=${loccity}&appid=${API_KEY}&units=metric`
         );
         const data = await response.json();
-
-        console.log(data);
         if (data.cod === "404" || loccity === "") {
           setError1("No Data Found");
           setWeatherData(null);
         } else {
           setWeatherData(data);
           setError1(null);
-          setShow(true);
         }
       }
     } catch (error) {
@@ -64,12 +58,43 @@ function CurrentLocation() {
 
   useEffect(() => {
     getCurrentLocation();
-    FetchWeather();
-  }, [loccity]); // Add loccity as a dependency for useEffect
+  }, []);
+
+  useEffect(() => {
+    if (loccity) FetchWeather();
+  }, [loccity]);
 
   return (
-    <div>
-      {weatherData && <Data city={weatherData} />}
+    <div className="main">
+      {/* <style>
+        {`
+          .mainloading{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+          .loader {
+            border: 6px solid #f3f3f3;
+            border-top: 6px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+          }
+          @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+          }
+        `}
+      </style> */}
+
+      {weatherData ? (
+        <Data city={weatherData} />
+      ) : (
+        <div className="mainloading">
+          <div className="loader"></div>
+        </div>
+      )}
     </div>
   );
 }

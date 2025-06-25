@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, Navigate } from "react-router-dom";
 import Data from './Data';
+import "../styles/Data.css"
 
 const API_KEY = "d078f5db93b9e170f3369d14f45bc62a";
 const API_URL = "https://api.openweathermap.org/data/2.5/weather";
@@ -13,7 +14,7 @@ function SearchLocation() {
 
     const location = useLocation();
     let area = location.state.Loc;
-    console.log(area);
+    // console.log(area);
 
     const fetchWeather = async () => {
         try {
@@ -22,7 +23,7 @@ function SearchLocation() {
             );
             const data = await response.json();
         
-            console.log(data);
+            // console.log(data);
             if (data.cod === "404" || area === "") {
                 setError(false);
                 setWeatherData(null);
@@ -41,8 +42,8 @@ function SearchLocation() {
         fetchWeather();
     }, []);
 
-    console.log(error);
-    console.log(weatherData);
+    // console.log(error);
+    // console.log(weatherData);
 
     if (redirectToRoot) {
         return <Navigate to="/" />; // Redirect to root if needed
@@ -52,9 +53,10 @@ function SearchLocation() {
         <div>
             {show ? (
                 <Data city={weatherData} />
+                //  <div className="loader"></div>
             ) : (
                 <div>
-                    <p>Loading....</p>
+                    <div className="loader"></div>
                     {/* You can customize this alert message as needed */}
                 </div>
             )}
