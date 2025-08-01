@@ -18,7 +18,7 @@ function App(){
         <div className="Container">
             <div className="body-Container">
                 <div className="Heading">
-                    <h1>Chandini Weather Report</h1>
+                    <h1>Weather Report</h1>
                 </div>
                 <div className="Logo-img">
                     <img src="https://ayushkul.github.io/react-weather-app/icons/perfect-day.svg"  width={"200px"} height={"200px"}/>
